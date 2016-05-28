@@ -91,7 +91,7 @@ gulp.task('server', function() {
     server: {
       baseDir: dist.root,
       routes: {
-        "/test" : 'js/specrunner.html'
+        '/test' : 'js/specrunner.html'
       }
     },
     port:   4000,
