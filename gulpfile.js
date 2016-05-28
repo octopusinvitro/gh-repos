@@ -19,7 +19,7 @@ var
     ],
     css: './scss/main.scss',
     js: [
-      './js/ui.js',
+      './js/userbox.js',
       './js/plugins.js',
       './js/main.js'
     ],
