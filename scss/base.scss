@@ -105,19 +105,56 @@ a {
   color: $link-color;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
 
+label {
+  display: block;
+  margin-bottom: .5em;
+  line-height: 2;
+}
 
+textarea,
+input[type=text],
+input[type=button],
+input[type=submit] {
+  margin:  .2em;
+  padding: .5em;
+  border-radius: $border-radius;
+}
 
+textarea,
+input[type=text] {
+  background: #eee;
+  border: 2px solid $border-color
+}
 
+input[type=text] {
+  max-width: 12em;
+}
 
+input[type=button],
+input[type=submit] {
+  display: inline-block;
+  color: #fff;
+  background-color: $secondary-color;
+  border: none;
+  -webkit-appearance: none;
+}
 
-
-
-
-
-
-
-
+input[type=radio],
+input[type=checkbox] {
+  width:  1em;
+  height: 1em;
+  padding: 0;
+  margin:  0;
+  vertical-align: bottom;
+  position: relative;
+  top: -.4em;
+  *overflow: hidden;
+}
 
 
 

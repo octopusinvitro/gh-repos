@@ -1,0 +1,20 @@
+.small {
+  font-size: $small-font-size;
+}
+
+%ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+%circle {
+  @extend .small;
+  display: inline-block;
+  width:  3em;
+  height: 3em;
+  line-height: 3em;
+  margin: 0 .2em;
+  font-family: $narrow-font-family;
+  text-align: center;
+  border-radius: 50%;
+}

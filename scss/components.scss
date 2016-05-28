@@ -1,0 +1,61 @@
+.sidebar,
+.content {
+  padding: 1em;
+}
+
+.sidebar {
+  @extend .small;
+  // background-color: yellowgreen;
+}
+
+.sidebar {
+  ul {
+    @extend %ul;
+  }
+}
+
+.collapsable {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .5s;
+}
+
+.collapsable-trigger:hover ~ .collapsable,
+.collapsable:hover {
+  max-height: 30em;
+}
+
+.user-info {
+  img {
+    border-radius: $border-radius;
+  }
+}
+
+.repos-info {
+  ul {
+    @extend %ul;
+  }
+}
+
+.repo {
+  position: relative;
+  margin-bottom: $spacing-unit;
+  padding: $spacing-unit;
+  background: #f7f7f7;
+  border: .1em solid $border-color;
+  border-radius: $border-radius;
+}
+
+.circle-border {
+  @extend %circle;
+  font-weight: bold;
+  color: $brand-color;
+  border: .2em solid;
+}
+
+.circle-lang {
+  @extend %circle;
+  margin-bottom: .4em;
+  color: white;
+  background-color: $brand-color;
+}

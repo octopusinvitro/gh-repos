@@ -1,0 +1,82 @@
+/* ===========
+    SIDEBAR
+   =========== */
+
+.sidebar__title {
+  margin-bottom: 0;
+  font-size: 1.2em;
+}
+
+.sidebar__menu {
+  margin: 0;
+  padding: .5em 1em;
+  font-size: 1.4em;
+  background-color: $link-color;
+
+  svg {
+    width: 1em;
+    height: 1em;
+    fill: $text-color;
+  }
+}
+
+.sidebar__groups {
+  li {
+    margin: 1em 0;
+    padding-bottom: 1em;
+  }
+}
+
+/* ===========
+    USER INFO
+   =========== */
+
+.user__image {
+  display: block;
+  margin: auto;
+}
+
+/* ===========
+    REPOS
+   =========== */
+
+.repo__title {
+  margin: 0;
+  font-family: $narrow-font-family;
+  line-height: 1;
+}
+
+.repo__languages {
+  @extend %ul;
+}
+
+.repo__fork {
+  position: absolute;
+  right: -.5em;
+  display: inline-block;
+  padding: .5em 1em;
+  color: #fff;
+  font-family: $narrow-font-family;
+  text-transform: uppercase;
+  background-color: #e74c3c;
+  border-radius: 75% 0 0 75%;
+
+  svg {
+    width:  1em;
+    height: 1em;
+    fill:   #fff;
+  }
+}
+
+.repo__footer {
+  @extend .small;
+  margin-top:  $spacing-unit/2;
+  padding-top: $spacing-unit/2;
+  text-align: right;
+  color: #999;
+  border-top: .1em solid $border-color;
+
+  time {
+    font-weight: bold;
+  }
+}

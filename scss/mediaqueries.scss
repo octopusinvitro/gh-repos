@@ -4,8 +4,84 @@
     Modify as content requires.
   ========================================================================== */
 
-@media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
+@media only screen and (min-width: 40em) {
+  .user__image,
+  .user__info {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .user__info {
+    margin-left: 1em;
+    width: 50%;
+  }
+
+  .user__name {
+    margin-top: 0;
+  }
+
+  .repo__fork .visuallyhidden {
+    position: static;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    overflow: visible;
+    clip: auto;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  .container {
+    display: flex;
+  }
+
+  .sidebar {
+    flex: 0 0 12em;
+  }
+
+  .content {
+    flex: 1;
+  }
+
+  .sidebar__menu {
+    display: none;
+  }
+
+  .collapsable {
+    max-height: 100%;
+    overflow: visible;
+  }
+}
+
+@media only screen and (min-width: 60em) {
+  .container {
+    min-height: 100%;
+  }
+
+  .repos-info {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  .repo {
+    box-sizing: border-box;
+    flex: 0 0 48%;
+    margin: 0 2% 1em 0;
+  }
+}
+
+@media only screen and (min-width: 80em) {
+  .repo {
+    flex: 0 0 31%;
+  }
+}
+
+@media only screen and (min-width: 100em) {
+  .repo {
+    flex: 0 0 23%;
+  }
 }
 
 @media print,
