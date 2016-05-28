@@ -4,30 +4,32 @@ var
   gulp         = require('gulp'),
   autoprefixer = require('gulp-autoprefixer'),
   concat       = require('gulp-concat'),
+  imagemin     = require('gulp-imagemin'),
   jasmine      = require('gulp-jasmine'),
   sass         = require('gulp-sass'),
   sourcemaps   = require('gulp-sourcemaps'),
   uglify       = require('gulp-uglify'),
   dev          = {
     files: [
-      './img/',
       './favicon.ico',
       './*.txt',
       './*.html',
       './*.png',
       './*.xml'
     ],
-    css:   './scss/main.scss',
+    css: './scss/main.scss',
     js: [
       './js/plugins.js',
       './js/main.js'
-    ]
+    ],
+    img:   './img/**'
   },
   dist         = {
     root:  './site/',
     files: distFiles,
     css:   './site/css/',
     js:    './site/js/',
+    img:   './site/img/'
   };
 
 function distFiles() {
@@ -56,6 +58,13 @@ gulp.task('js', function() {
     .pipe(gulp.dest(dist.js));
 });
 
+gulp.task('img', function() {
+  return gulp
+    .src(dev.img)
+    .pipe(imagemin())
+    .pipe(gulp.dest(dist.img));
+});
+
 gulp.task('clean', function () {
   del.sync(dist.files());
 });
@@ -69,9 +78,11 @@ gulp.task('dist', ['clean'], function () {
 gulp.task('watch', function() {
   gulp.watch('./scss/**', ['scss']);
   gulp.watch(dev.js,      ['js']);
+  gulp.watch(dev.img,     ['img']);
   gulp.watch(dev.files,   ['dist']);
   gulp.watch('./scss/**', browsersync.reload);
   gulp.watch(dev.js,      browsersync.reload);
+  gulp.watch(dev.img,     browsersync.reload);
   gulp.watch(dev.files,   browsersync.reload);
 });
 
@@ -89,7 +100,7 @@ gulp.task('server', function() {
   });
 });
 
-gulp.task('default', ['scss', 'js', 'dist', 'watch', 'server']);
+gulp.task('default', ['scss', 'js', 'img', 'dist', 'watch', 'server']);
 
 gulp.task('specs', function () {
   return gulp
