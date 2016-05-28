@@ -1,8 +1,14 @@
 {
   "env": {
     "browser": true,
-    "node": true,
+    "amd": true,
+    "jquery": true,
     "jasmine": true
+  },
+  "globals": {
+    "DATA": true,
+    "UI": true,
+    "setFixtures": true
   },
   "extends": "eslint:recommended",
   "rules": {

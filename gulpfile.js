@@ -19,6 +19,7 @@ var
     ],
     css: './scss/main.scss',
     js: [
+      './js/ui.js',
       './js/plugins.js',
       './js/main.js'
     ],
@@ -91,7 +92,7 @@ gulp.task('server', function() {
     server: {
       baseDir: dist.root,
       routes: {
-        '/test' : 'js/specrunner.html'
+        '/test' : 'js'
       }
     },
     port:   4000,
