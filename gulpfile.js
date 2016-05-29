@@ -22,6 +22,7 @@ var
       './js/vendor/*.js'
     ],
     js: [
+      './js/src/connection.js',
       './js/src/ui-userbox.js',
       './js/src/ui-repobox.js',
       './js/plugins.js',
