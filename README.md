@@ -1,5 +1,8 @@
 # GH repos
 
+[![Build Status](https://travis-ci.org/octopusinvitro/gh-repos.svg?branch=master)](https://travis-ci.org/octopusinvitro/gh-repos)
+[![build status](https://gitlab.com/me-stevens/gh-repos/badges/master/build.svg)](https://gitlab.com/me-stevens/gh-repos/commits/master)
+
 GitHub repositories
 
 ## About
