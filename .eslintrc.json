@@ -6,7 +6,7 @@
     "jasmine": true
   },
   "globals": {
-    "DATA": true,
+    "USERDATA": true,
     "UI": true,
     "setFixtures": true
   },
