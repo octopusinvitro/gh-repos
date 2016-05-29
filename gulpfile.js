@@ -11,13 +11,16 @@ var
   uglify       = require('gulp-uglify'),
   dev          = {
     files: [
-      './favicon.ico',
+      './*.ico',
       './*.txt',
       './*.html',
       './*.png',
       './*.xml'
     ],
     css: './scss/main.scss',
+    vendor: [
+      './js/vendor/*.js'
+    ],
     js: [
       './js/userbox.js',
       './js/repobox.js',
@@ -30,6 +33,7 @@ var
     root:  './site/',
     files: distFiles,
     css:   './site/css/',
+    vendor:'./site/js/vendor',
     js:    './site/js/',
     img:   './site/img/'
   };
@@ -77,6 +81,12 @@ gulp.task('dist', ['clean'], function () {
     .pipe(gulp.dest(dist.root));
 });
 
+gulp.task('vendor', function () {
+  return gulp
+  .src(dev.vendor)
+  .pipe(gulp.dest(dist.vendor));
+});
+
 gulp.task('watch', function() {
   gulp.watch('./scss/**', ['scss']);
   gulp.watch(dev.js,      ['js']);
@@ -102,7 +112,7 @@ gulp.task('server', function() {
   });
 });
 
-gulp.task('default', ['scss', 'js', 'img', 'dist', 'watch', 'server']);
+gulp.task('default', ['scss', 'js', 'img', 'dist', 'vendor', 'watch', 'server']);
 
 gulp.task('specs', function () {
   return gulp
