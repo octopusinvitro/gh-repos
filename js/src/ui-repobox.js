@@ -1,4 +1,4 @@
-UI = (function(ui) {
+var UI = (function(ui) {
 
   ui.reposbox   = 'repos-info';
   ui.repotitle  = 'repo__title';
@@ -71,15 +71,15 @@ UI = (function(ui) {
   }
 
   function buildAllBoxes(data, validator) {
-    return $.map(data, function(d) {
+    return join($.map(data, function(d) {
       d = validator.checkRepo(d);
       return buildRepoBox(d);
-    });
+    }));
   }
 
   ui.fillReposBox = function(data, validator) {
     var reposbox = join(['.', ui.reposbox, ' ul']);
-    $(reposbox).html(join(buildAllBoxes(data, validator)));
+    $(reposbox).html(buildAllBoxes(data, validator));
   };
 
   return ui;

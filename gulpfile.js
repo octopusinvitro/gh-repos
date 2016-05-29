@@ -22,8 +22,8 @@ var
       './js/vendor/*.js'
     ],
     js: [
-      './js/userbox.js',
-      './js/repobox.js',
+      './js/src/ui-userbox.js',
+      './js/src/ui-repobox.js',
       './js/plugins.js',
       './js/main.js'
     ],
