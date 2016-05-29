@@ -1,11 +1,10 @@
-var UI = (function() {
-  var
-    ui = {
-      userbox:  'user-info',
-      avatar:   'user__image',
-      username: 'user__name'
-    },
-    monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+var UI = (function(ui) {
+
+  ui.userbox  = 'user-info';
+  ui.avatar   = 'user__image';
+  ui.username = 'user__name';
+
+  var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   function join(array) {
     return array.join('');
@@ -55,9 +54,13 @@ var UI = (function() {
 
   ui.fillUserBox = function(data, validator) {
     var userbox = '.' + ui.userbox;
-    data = validator.check(data);
+    data = validator.checkUser(data);
     $(userbox).html(buildUserBox(data));
   };
 
+  ui.join = join;
+  ui.date = date;
+
   return ui;
-})();
+
+})(UI || {});

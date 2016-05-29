@@ -6,6 +6,7 @@
     "jasmine": true
   },
   "globals": {
+    "REPOSDATA": true,
     "USERDATA": true,
     "UI": true,
     "setFixtures": true

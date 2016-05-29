@@ -20,6 +20,7 @@ var
     css: './scss/main.scss',
     js: [
       './js/userbox.js',
+      './js/repobox.js',
       './js/plugins.js',
       './js/main.js'
     ],
@@ -105,6 +106,6 @@ gulp.task('default', ['scss', 'js', 'img', 'dist', 'watch', 'server']);
 
 gulp.task('specs', function () {
   return gulp
-  .src('js/spec/*.js')
-  .pipe(jasmine());
+    .src('js/spec/*.js')
+    .pipe(jasmine());
 });

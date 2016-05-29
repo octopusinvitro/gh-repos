@@ -10,8 +10,8 @@ describe('UI', function() {
 
     beforeEach(function() {
       setFixtures('<section class="' + userbox + '"></section>');
-      validator = { check: function(data) { return data; }};
       data      = USERDATA;
+      validator = { checkUser: function(data) { return data; }};
     });
 
     it('shows the right avatar', function() {
