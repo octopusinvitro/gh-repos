@@ -9,6 +9,7 @@
     "REPOSDATA": true,
     "USERDATA": true,
     "UI": true,
+    "Connection": true,
     "setFixtures": true
   },
   "extends": "eslint:recommended",
