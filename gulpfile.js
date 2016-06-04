@@ -3,9 +3,10 @@ var
   del          = require('del'),
   gulp         = require('gulp'),
   autoprefixer = require('gulp-autoprefixer'),
+  // cache        = require('gulp-cache'),
   concat       = require('gulp-concat'),
   imagemin     = require('gulp-imagemin'),
-  jasmine      = require('gulp-jasmine'),
+  jasmine      = require('gulp-jasmine-phantom'),
   sass         = require('gulp-sass'),
   sourcemaps   = require('gulp-sourcemaps'),
   uglify       = require('gulp-uglify'),
@@ -117,6 +118,25 @@ gulp.task('default', ['scss', 'js', 'img', 'dist', 'vendor', 'watch', 'server'])
 
 gulp.task('specs', function () {
   return gulp
-    .src('js/spec/*.js')
-    .pipe(jasmine());
+    .src('./js/spec/')
+    .pipe(jasmine({
+      verbose: true,
+      includeStackTrace: true,
+      config: {
+        spec_dir:   './js/',
+        spec_files: [
+          'spec/connection-spec.js',
+          'spec/ui-userbox-spec.js',
+          'spec/ui-repobox-spec.js'
+        ],
+        helpers:    [
+          'vendor/*.js',
+          'src/*.js',
+          'spec/data-user.js',
+          'spec/data-repos.js',
+          'spec/SpecHelper.js'
+        ],
+        random: true
+      }
+    }));
 });
