@@ -3,12 +3,12 @@ var
   del          = require('del'),
   gulp         = require('gulp'),
   autoprefixer = require('gulp-autoprefixer'),
-  // cache        = require('gulp-cache'),
   concat       = require('gulp-concat'),
+  gutil        = require('gulp-util'),
   imagemin     = require('gulp-imagemin'),
-  jasmine      = require('gulp-jasmine-phantom'),
   sass         = require('gulp-sass'),
   sourcemaps   = require('gulp-sourcemaps'),
+  spawn        = require('child_process').spawn,
   uglify       = require('gulp-uglify'),
   dev          = {
     files: [
@@ -116,27 +116,27 @@ gulp.task('server', function() {
 
 gulp.task('default', ['scss', 'js', 'img', 'dist', 'vendor', 'watch', 'server']);
 
-gulp.task('specs', function () {
-  return gulp
-    .src('./js/spec/')
-    .pipe(jasmine({
-      verbose: true,
-      includeStackTrace: true,
-      config: {
-        spec_dir:   './js/',
-        spec_files: [
-          'spec/connection-spec.js',
-          'spec/ui-userbox-spec.js',
-          'spec/ui-repobox-spec.js'
-        ],
-        helpers:    [
-          'vendor/*.js',
-          'src/*.js',
-          'spec/data-user.js',
-          'spec/data-repos.js',
-          'spec/SpecHelper.js'
-        ],
-        random: true
-      }
-    }));
+gulp.task('specs', function() {
+  var
+    child  = spawn('testem', ['ci'], {cwd: './'}),
+    stdout = '',
+    stderr = '';
+
+  child.stdout.setEncoding('utf8');
+  child.stdout.on('data', function (data) {
+    stdout += data;
+    gutil.log(data);
+  });
+
+  child.stderr.setEncoding('utf8');
+  child.stderr.on('data', function (data) {
+    stderr += data;
+    gutil.log(gutil.colors.red(data));
+    gutil.beep();
+  });
+
+  child.on('close', function(code) {
+    gutil.log('Done with exit code', code);
+    gutil.log('You access complete stdout and stderr from here');
+  });
 });

@@ -1,0 +1,16 @@
+{
+  "framework": "jasmine2",
+  "src_files": [
+    "js/lib/jasmine-2.4.1/mock-ajax.js",
+    "https://code.jquery.com/jquery-2.1.4.js",
+    "https://cdn.jsdelivr.net/jasmine.jquery/2.0.3/jasmine-jquery.js",
+    "js/src/connection.js",
+    "js/src/ui-userbox.js",
+    "js/src/ui-repobox.js",
+    "js/spec/data-user.js",
+    "js/spec/data-repos.js",
+    "js/spec/connection-spec.js",
+    "js/spec/ui-userbox-spec.js",
+    "js/spec/ui-repobox-spec.js"
+  ]
+}

@@ -19,6 +19,6 @@ before_script:
 
 all_tests:
   script:
-   - npm install -g gulp
+   - npm install -g testem
    - npm install
    - gulp specs

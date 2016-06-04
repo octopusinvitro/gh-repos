@@ -11,5 +11,6 @@ node_js:
   - "0.10"
   - "iojs"
 before_script:
+  - npm install testem -g
   - npm install
 script: gulp specs
