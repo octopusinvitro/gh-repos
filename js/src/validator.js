@@ -9,7 +9,18 @@ var Validator = (function(validator) {
     'location': 'No location',
     'public_repos': 0,
     'public_gists': 0,
-    'created_at': '1991-01-01T00:00:00Z'
+    'created_at': 'No date available'
+  };
+
+  validator.NULLREPODATA =   {
+    'name': 'No name',
+    'html_url': '',
+    'description': 'No description',
+    'fork': false,
+    'languages_url': 'https://api.github.com/repos/octocat/git-consortium/languages',
+    'contributors_url': 'https://api.github.com/repos/octocat/git-consortium/contributors',
+    'updated_at': 'No date available',
+    'lang': []
   };
 
   function isString(s) {
@@ -25,6 +36,15 @@ var Validator = (function(validator) {
     return date.toString() !== 'Invalid Date';
   }
 
+  function isBoolean(b) {
+    return typeof b === 'boolean';
+  }
+
+  function addLanguages(data) {
+    // data.push(lang)
+    return data;
+  }
+
   function hasValidUserAttributes(data) {
     return data.hasOwnProperty('avatar_url')   && isString(data.avatar_url)
       &&   data.hasOwnProperty('name')         && isString(data.name)
@@ -37,8 +57,22 @@ var Validator = (function(validator) {
       &&   data.hasOwnProperty('created_at')   && isDate(data.created_at);
   }
 
+  function hasValidRepoAttributes(data) {
+    return data.hasOwnProperty('html_url')         && isString(data.html_url)
+      &&   data.hasOwnProperty('name')             && isString(data.name)
+      &&   data.hasOwnProperty('description')      && isString(data.description)
+      &&   data.hasOwnProperty('contributors_url') && isString(data.contributors_url)
+      &&   data.hasOwnProperty('fork')             && isBoolean(data.fork)
+      &&   data.hasOwnProperty('languages_url')    && isString(data.languages_url)
+      &&   data.hasOwnProperty('updated_at')       && isDate(data.updated_at);
+  }
+
   validator.checkUser = function(data) {
     return (hasValidUserAttributes(data)) ? data : validator.NULLUSERDATA;
+  };
+
+  validator.checkRepo = function(data) {
+    return (hasValidRepoAttributes(data)) ? addLanguages(data) : validator.NULLREPODATA;
   };
 
   return validator;

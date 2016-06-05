@@ -22,7 +22,7 @@ describe('UI', function() {
       repofooter = s(UI.repofooter);
 
     beforeEach(function() {
-      data         = [REPOSDATA[0]];
+      data         = [$.extend(true, {}, REPOSDATA[0])];
       data[0].lang = [];
     });
 
