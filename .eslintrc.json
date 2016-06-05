@@ -8,8 +8,9 @@
   "globals": {
     "REPOSDATA": true,
     "USERDATA": true,
-    "UI": true,
     "Connection": true,
+    "Validator": true,
+    "UI": true,
     "setFixtures": true
   },
   "extends": "eslint:recommended",

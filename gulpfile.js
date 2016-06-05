@@ -1,9 +1,9 @@
 var
+  autoprefixer = require('gulp-autoprefixer'),
   browsersync  = require('browser-sync').create(),
+  concat       = require('gulp-concat'),
   del          = require('del'),
   gulp         = require('gulp'),
-  autoprefixer = require('gulp-autoprefixer'),
-  concat       = require('gulp-concat'),
   gutil        = require('gulp-util'),
   imagemin     = require('gulp-imagemin'),
   sass         = require('gulp-sass'),
@@ -24,6 +24,7 @@ var
     ],
     js: [
       './js/src/connection.js',
+      './js/src/validator.js',
       './js/src/ui-userbox.js',
       './js/src/ui-repobox.js',
       './js/plugins.js',
