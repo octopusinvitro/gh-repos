@@ -9,21 +9,24 @@ var Connection = (function(connection) {
 
   // The promises will return:
   // dataFromRequest = [ data, statusText, jqXHR ]
-  function ifFulfilled(userData, reposData) {
+  connection.ifFulfilled = function(userData, reposData) {
     connection.user  = userData[0];
     connection.repos = reposData[0];
-  }
+  };
 
-  function ifRejected() {
+  connection.ifRejected = function() {
     connection.user  = {};
     connection.repos = {};
-  }
+  };
 
-  connection.get = function(urlUser, urlRepos) {
-    $.when(
+  connection.get = function(urlUser, urlRepos, callbacks) {
+    return $.when(
       getData(urlUser),
       getData(urlRepos)
-    ).then(ifFulfilled, ifRejected);
+    ).then(
+      callbacks.ifFulfilled,
+      callbacks.ifRejected
+    ).promise();
   };
 
   return connection;

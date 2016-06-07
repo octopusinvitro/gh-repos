@@ -1,11 +1,14 @@
+var x;
 describe('Connection', function() {
 
   var
-    requestUser, requestRepos,
-    onSuccess = jasmine.createSpy('onSuccess'),
-    onFailure = jasmine.createSpy('onFailure'),
+    requestUser, requestRepos, promise,
+    onSuccess = jasmine.createSpy('Connection.ifFulfilled'),
+    onFailure = jasmine.createSpy('Connection.ifRejected'),
     urlUser   = 'http://example-user.com',
     urlRepos  = 'http://example-repos.com',
+    // urlUser  = 'https://api.github.com/users/octocat',
+    // urlRepos = 'https://api.github.com/users/octocat/repos',
     testResponsesUser = {
       results: {
         success : { 'status': 200, 'responseText': '{"hello" : "user"}' },
@@ -21,9 +24,9 @@ describe('Connection', function() {
 
   beforeEach(function() {
     jasmine.Ajax.install();
-    Connection.get(urlUser, urlRepos, {
-      onSuccess: onSuccess,
-      onFailure: onFailure
+    promise = Connection.get(urlUser, urlRepos, {
+      ifFulfilled: onSuccess,
+      ifRejected:  onFailure
     });
     requestUser  = jasmine.Ajax.requests.first();
     requestRepos = jasmine.Ajax.requests.mostRecent();
@@ -51,13 +54,37 @@ describe('Connection', function() {
 
   describe('on success', function() {
 
+    var dataFromUserRequest, dataFromReposRequest;
+
     beforeEach(function() {
       requestUser.respondWith(testResponsesUser.results.success);
       requestRepos.respondWith(testResponsesRepos.results.success);
+      dataFromUserRequest  = onSuccess.calls.first().args[0];
+      dataFromReposRequest = onSuccess.calls.mostRecent().args[0];
     });
 
-    xit('calls the onSuccess callback', function() {
+    it('calls the onSuccess callback', function() {
       expect(onSuccess).toHaveBeenCalled();
+    });
+
+    // The promises will return:
+    // dataFromRequest = [ data, statusText, jqXHR ]
+    it('returns one response array for each request', function() {
+      expect(dataFromUserRequest.length).toEqual(3);
+      expect(dataFromReposRequest.length).toEqual(3);
+    });
+
+    xit('retrieves the right data', function() {
+      expect(dataFromUserRequest[0] ).toEqual({hello : 'user'} );
+      expect(dataFromReposRequest[0]).toEqual({hello : 'repos'} );
+    });
+
+    it('updates the connection variables', function() {
+      function expectation() {
+        expect(Connection.user ).toEqual({hello : 'user'} );
+        expect(Connection.repos).toEqual({hello : 'repos'} );
+      }
+      promise.done(expectation);
     });
 
   });
@@ -69,7 +96,7 @@ describe('Connection', function() {
       requestRepos.respondWith(testResponsesRepos.results.failure);
     });
 
-    xit('calls the onFailure callback', function() {
+    it('calls the onFailure callback', function() {
       expect(onFailure).toHaveBeenCalled();
     });
 
