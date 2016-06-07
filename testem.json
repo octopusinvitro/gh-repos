@@ -5,11 +5,14 @@
     "https://code.jquery.com/jquery-2.1.4.js",
     "https://cdn.jsdelivr.net/jasmine.jquery/2.0.3/jasmine-jquery.js",
     "js/src/connection.js",
+    "js/src/validator.js",
     "js/src/ui-userbox.js",
     "js/src/ui-repobox.js",
     "js/spec/data-user.js",
     "js/spec/data-repos.js",
     "js/spec/connection-spec.js",
+    "js/spec/validator-user-spec.js",
+    "js/spec/validator-repo-spec.js",
     "js/spec/ui-userbox-spec.js",
     "js/spec/ui-repobox-spec.js"
   ]
